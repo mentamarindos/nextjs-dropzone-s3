@@ -1,6 +1,5 @@
 
-
-export default function DragAndDrop() {
+export default function DragAndDrop() { 
     return (
         <div className="max-w-xl">
             <label
