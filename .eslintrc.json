@@ -6,8 +6,7 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "standard-with-typescript",
-    "prettier"
+    "standard-with-typescript"
   ],
   "overrides": [],
   "parserOptions": {
@@ -17,8 +16,11 @@
   },
   "plugins": ["react"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "no-multiple-empty-lines": ["error", { "max": 1}]
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/space-before-function-paren":"off",
+    "react/prop-types": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off"
   }
 }

@@ -4,5 +4,5 @@
   "eslint.packageManager": "pnpm",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  },
+  }
 }
