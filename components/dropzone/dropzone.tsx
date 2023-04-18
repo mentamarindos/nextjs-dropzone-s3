@@ -1,5 +1,5 @@
 import Menu from '@/components/dropzone/menu'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 import DragAndDrop from './drag-and-drop'
 
 export default function Dropzone() {

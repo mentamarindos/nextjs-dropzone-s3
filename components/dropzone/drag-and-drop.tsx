@@ -1,23 +1,30 @@
-import { useDropzone } from 'react-dropzone'
+import { Button } from '@/components/ui/button'
+import useDragAndDrop from '@/hooks/useDragAndDrop'
 
-export default function DragAndDrop() {
-    const { acceptedFiles, getRootProps, getInputProps } = useDropzone()
+const DragAndDrop = () => {
+    const { myFiles, removeFile, getRootProps, getInputProps } = useDragAndDrop()
 
-    const files = acceptedFiles.map(file => (
+    const fileList = myFiles.map(file => (
         <li key={file.path}>
             {file.path} - {file.size} bytes
+            <Button variant='link' onClick={removeFile(file)}>X</Button>
         </li>
     ))
+
     return (
-        <section className="container">
-            <div {...getRootProps({ className: 'dropzone' })}>
-                <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-            </div>
-            <aside>
-                <h4>Files</h4>
-                <ul>{files}</ul>
-            </aside>
+        <section>
+            {(myFiles.length === 0)
+                ? <div {...getRootProps({ className: 'dropzone' })}>
+                    <input {...getInputProps()} />
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                </div>
+                : <aside className='bg-slate card'>
+                    <h4>Files</h4>
+                    <ul>{fileList}</ul>
+                </aside>
+            }
         </section>
     )
 }
+
+export default DragAndDrop

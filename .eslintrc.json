@@ -21,6 +21,7 @@
     "@typescript-eslint/space-before-function-paren":"off",
     "react/prop-types": "off",
     "indent": "off",
-    "@typescript-eslint/indent": "off"
+    "@typescript-eslint/indent": "off",
+    "react/no-unescaped-entities": "off"
   }
 }
