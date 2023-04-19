@@ -1,42 +1,34 @@
 import React, { useEffect } from 'react'
 import useDragAndDrop from '@/hooks/use-drag-n-drop'
-import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { type IFile } from '@/types/file'
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle
 } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import FilePreview from './file-preview'
 
 const DragAndDrop = () => {
     const { myFiles, removeFile, getRootProps, getInputProps } = useDragAndDrop()
 
     useEffect(() => {
         // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-        return () => { myFiles.forEach(file => { URL.revokeObjectURL(file.preview) }) }
+        return () => { myFiles.forEach((file: IFile) => { URL.revokeObjectURL(file.preview) }) }
     }, [])
 
     const dropInput = (
         <CardContent>
             <div {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                <p>Drag `n` drop some files here, or click to select files</p>
             </div>
         </CardContent>
     )
 
-    const fileList = myFiles.map(file => (
-        <li key={file.path}>
-            <img
-                src={file.preview}
-                className={cn('object-cover w-[99px] h-[99px]')}
-                // Revoke data uri after image is loaded
-                onLoad={() => { URL.revokeObjectURL(file.preview) }}
-            />
-            {file.path} [preview: {file.preview}]
-            <Button variant='link' onClick={removeFile(file)}>X</Button>
-        </li>
+    const fileList = myFiles.map((file: IFile) => (
+        <FilePreview file={file} key={file.path} removeFile={removeFile} />
     ))
 
     const filesPreview = (
@@ -44,8 +36,8 @@ const DragAndDrop = () => {
             <CardHeader>
                 <CardTitle>Files available</CardTitle>
             </CardHeader>
-            <CardContent>
-                <ul>{fileList}</ul>
+            <CardContent className={cn('w-lg')}>
+                {fileList}
             </CardContent>
         </>
     )

@@ -7,11 +7,13 @@ export default function useDragAndDrop () {
   const onDrop = useCallback(acceptedFiles => {
     // setMyFiles([...myFiles, ...acceptedFiles])
     setMyFiles(acceptedFiles.map(file => {
-      // if(file.)
+      if ((file.type as string).startsWith('image')) {
+        return Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      }
 
-      return Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })
+      return file
     })
     )
   }, [myFiles])
@@ -20,7 +22,7 @@ export default function useDragAndDrop () {
 
   function removeFile (file) {
     return () => {
-      const newFiles = [...myFiles]
+      const newFiles: any = [...myFiles]
       newFiles.splice(newFiles.indexOf(file), 1)
       setMyFiles(file => newFiles)
     }

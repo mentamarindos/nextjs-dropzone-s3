@@ -1,6 +1,6 @@
-import Head from "next/head"
-import { Layout } from "@/components/layout"
-import Dropzone from "@/components/dropzone/dropzone"
+import Head from 'next/head'
+import { Layout } from '@/components/layout'
+import Dropzone from '@/components/dropzone/dropzone'
 
 export default function IndexPage() {
   return (
@@ -16,12 +16,9 @@ export default function IndexPage() {
       </Head>
 
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-
         <Dropzone></Dropzone>
-
-      </section> 
+      </section>
 
     </Layout>
   )
-  
 }
