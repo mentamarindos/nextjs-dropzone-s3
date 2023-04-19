@@ -6,6 +6,7 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "standard",
     "standard-with-typescript"
   ],
   "overrides": [],
